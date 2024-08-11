@@ -1,0 +1,22 @@
+class Solution {
+public:
+    Solution(){
+        ios::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+    }
+    int pairSum(ListNode* head) {
+        vector<int>ans;
+        while(head){
+            ans.push_back(head->val);
+            head = head->next;
+        }
+        int l=0, h = ans.size()-1;
+        int maxi = INT_MIN;
+        while(l<h){
+            maxi = max(maxi,ans[l]+ans[h]);
+            l++; h--;   
+        }
+        return maxi;
+    }
+};
