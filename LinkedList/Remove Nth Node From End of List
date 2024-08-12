@@ -1,0 +1,33 @@
+class Solution {
+public:
+    Solution(){
+        ios::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+    }
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        int cnt = 0;
+        ListNode* tmp = head;
+        while(tmp){
+            cnt++;
+            tmp = tmp->next;
+        }
+        if(cnt <= 1){
+            ListNode* ans = NULL;
+            return ans;
+        }else if(cnt == n){
+            head = head->next;
+            return head;
+        }
+        int idx = cnt - n + 1, i = 0;
+        ListNode* temp = head;
+        while(temp){
+            i++;
+            if(i+1 == idx){
+                temp->next = temp->next->next;
+            }
+            temp = temp->next;
+        }
+        return head;
+    }
+};
