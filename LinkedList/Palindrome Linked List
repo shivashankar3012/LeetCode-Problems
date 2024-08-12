@@ -1,0 +1,32 @@
+class Solution {
+public:
+    Solution(){
+        ios::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+    }
+    bool isPalindrome(ListNode* head) {
+        ListNode* newHead = NULL;
+        ListNode* temp = head;
+        while(temp){
+            ListNode* newNode = new ListNode(temp->val);
+            if(newHead == NULL){
+                newHead = newNode;
+                newHead->next = NULL;
+            }else{
+                newNode->next = newHead;
+                newHead = newNode;
+            }
+            temp = temp->next;
+        }
+        ListNode* t1=head, *t2 = newHead;
+        while(t1){
+            if(t1->val != t2->val){
+                return false;
+            }
+            t1 = t1->next;
+            t2 = t2->next;
+        }
+        return true;
+    }
+};
