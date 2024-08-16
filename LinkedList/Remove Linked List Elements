@@ -1,0 +1,26 @@
+class Solution {
+public:
+    Solution(){
+        ios::sync_with_stdio(false);
+        cin.tie(nullptr);
+        cout.tie(nullptr);
+    }
+    ListNode* removeElements(ListNode* head, int val) {
+        ListNode* temp = head;
+        ListNode* dummy = new ListNode(-1);
+        dummy->next = head;
+        ListNode* prev = dummy; 
+        while(temp){
+            if(temp->val == val){
+                prev->next = temp->next;
+                temp = prev->next;
+            }else{
+                temp = temp->next;
+                prev = prev->next;
+            }
+
+        }
+        ListNode*newHead = dummy->next;
+        return newHead;
+    }
+};
