@@ -1,0 +1,31 @@
+class Solution {
+public:
+    Solution(){
+        ios::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+    }
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        vector<vector<string>>ans;
+        if(strs.size() == 0)
+            return ans;
+        vector<string>vec,see;
+        for(int i=0;i<strs.size();i++){
+            string s = strs[i];
+            sort(s.begin(),s.end());
+            vec.push_back(s);
+            if(find(see.begin(),see.end(),s) == see.end())
+                see.push_back(s);
+        }
+        for(int i=0;i<see.size();i++){
+            vector<string>srk;
+            for(int j=0;j<vec.size();j++){
+                if(see[i] == vec[j]){
+                    srk.push_back(strs[j]);
+                }
+            }
+            ans.push_back(srk);
+        }
+        return ans;
+    }
+};
