@@ -1,0 +1,33 @@
+class Solution {
+public:
+    Solution(){
+        ios::sync_with_stdio(false);
+        cin.tie(nullptr);
+        cout.tie(nullptr);
+    }
+    ListNode* rotateRight(ListNode* head, int k) {
+        int n=0; ListNode*temp = head,*tmp = head;
+        while(temp){
+            temp = temp->next;
+            n++;
+        }
+        if(!head or k==0 or n==k or n==1)
+            return head;
+        temp = head; ListNode* prev = head;
+        int idx = k%n, i=0;
+        if(n-idx == n)
+            return head;
+        while(i<n-idx){
+            prev = temp;
+            temp = temp->next;
+            i++;
+        }
+        ListNode* temp1=temp;
+        while(temp1->next!=NULL){
+            temp1 = temp1->next; 
+        }
+        temp1->next = tmp;
+        prev->next = NULL;
+        return temp;
+    }
+};
