@@ -1,0 +1,29 @@
+class Solution {
+public:
+    Solution(){
+        ios::sync_with_stdio(false);
+        cin.tie(nullptr);
+        cout.tie(nullptr);
+    }
+    void permutate(vector<vector<int>>&ans, vector<int>&nums, int idx){
+        if(idx == nums.size()){
+            if(find(ans.begin(),ans.end(),nums) == ans.end()){
+                ans.push_back(nums);
+            }
+        }
+        for(int i=idx;i<nums.size();i++){
+            if(i!=idx and nums[i] == nums[idx]){
+                continue;
+            }
+            swap(nums[i],nums[idx]);
+            permutate(ans, nums, idx+1);
+            swap(nums[i],nums[idx]);
+        }
+    }
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        // sort(nums.begin(),nums.end());
+        vector<vector<int>>ans;
+        permutate(ans, nums, 0);
+        return ans;
+    }
+};
